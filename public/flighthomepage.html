@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Flight Search Engine Homepage</title>
+<meta charset="UTF-8">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-app="myApp" class="app-body">
+
+<div id="flights" class="container-fluid" ng-controller="searchFlights">
+    <img src="assets/images/travel_image.jpg" class="image-style">
+    <div class="row main-row" style="">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <h1 class="first-header">Flight Search Engine!</h1>
+            <!--1st Row-->
+            <div class="row">
+                <div class="col-xs-12 col-md-4">
+                    To: <input type="text" id="depLoc" placeholder="fra" ng-model="flight.dep">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    From: <input type="text" id="arrLoc" placeholder="lhr" ng-model="flight.arr">
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    Date: <input type="date" ng-model="flight.date" id="date">
+                </div>
+            </div>
+
+            <!--2nd Row-->
+            <div class="row row-3">
+                <div class="col-xs-12 col-md-4">
+                    <label>
+                        Sort By:
+                    </label>
+                    <input type="radio" ng-model="flight.choice" ng-value="1" name="flightsort" checked>Fare
+                    <input type="radio" ng-model="flight.choice" ng-value="2" name="flightsort">Duration
+
+                </div>
+                <div class="col-xs-12 col-md-4">
+                        <label/>
+                            <input type="checkbox" id="connFlightEnable" ng-model="flight.connFlight" ng-value="false"/>
+                            Select To View Connecting Flights
+                        </label>
+                    </div>
+                <div class="col-xs-12 col-md-4">
+                    <button ng-click="getflights(flight)">Go</button>
+                </div>
+            </div>
+
+            <!--3rdth row-->
+            <div class="row">
+                <table class="table">
+                    <thead>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Departure
+                    </th>
+                    <th>
+                        Arrival
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Time
+                    </th>
+                    <th>
+                        Duration
+                    </th>
+                    <th>
+                        Fare
+                    </th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="flight in flights" class="flight-details" serach-method="search()">
+                        <td>{{flight.name}}</td>
+                        <td>{{flight.departure}}</td>
+                        <td>{{flight.arrival}}</td>
+                        <td>{{flight.depDate}}</td>
+                        <td>{{flight.depTime}}</td>
+                        <td>{{flight.duration}}</td>
+                        <td>{{flight.fare}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                {{error}}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="assets/javascripts/app.js"></script>
+<script src="assets/javascripts/flight.ctrl.js"></script>
+</body>
+</html>

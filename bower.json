@@ -1,0 +1,22 @@
+{
+  "name": "bower",
+  "authors": [
+    "Shubham <shubham.yedage@synerzip.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.4",
+    "angular": "^1.5.5",
+    "bootstrap": "^3.3.6"
+  }
+}
