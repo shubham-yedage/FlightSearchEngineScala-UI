@@ -1,6 +1,5 @@
 package model
 
-
 class Flight(private var _name: String, var _departure: String, var _arrival: String, var _depDate: String, var _depTime: Int, var _duration: Float, var _fare: Float) {
 
   //Default Constructor
@@ -69,3 +68,18 @@ class Flight(private var _name: String, var _departure: String, var _arrival: St
     state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
   }
 }
+//object Flights {
+//    implicit val flightWrites:OWrites[Flights]=(
+//      (JsPath \ "name").write[String] and
+//        (JsPath \ "departure").write[String] and
+//        (JsPath \ "arrival").write[String] and
+//        (JsPath \ "depDate").write[String] and
+//        (JsPath \ "depTime").write[Int] and
+//        (JsPath \ "duration").write[Float] and
+//        (JsPath \ "fare").write[Float]
+//
+//      )(unlift(Flights.unapply)
+//    )
+//  }
+//
+//case class Flights(private var _name: String, var _departure: String, var _arrival: String, var _depDate: String, var _depTime: Int, var _duration: Float, var _fare: Float)

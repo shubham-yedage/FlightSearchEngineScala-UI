@@ -2,9 +2,11 @@ angular.module('myApp').controller('searchFlights', function($scope,$http, $filt
 $scope.flights=[];
 $scope.flight={};
 $scope.connflight={};
-
+$scope.status=true
     $scope.getflights = function(flight){
-
+        if(flight.connFlight!=true)
+        {status=false}
+        else{status=true}
     $http({
         method: 'POST',
         url: 'http://localhost:9000/homepage',
@@ -16,11 +18,14 @@ $scope.connflight={};
                 return str.join("&");
             },
         data: {
+
+
         deploc: flight.dep,
         arrloc: flight.arr,
         date: $filter('date')(flight.date, "dd/MM/yyyy"),
         sortchoice: flight.choice,
-        connflightstatus: flight.connFlight
+        //connflightstatus: flight.connFlight
+        connflightstatus:status
         },
     }).success(
                 function(result){
