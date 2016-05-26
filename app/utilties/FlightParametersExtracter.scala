@@ -1,9 +1,9 @@
 package utilties
 
 import java.io.{File, FileNotFoundException}
-
-import com.fasterxml.jackson.databind.JsonSerializable.Base
 import model.Flight
+import play.api.libs.json.JsValue
+import play.mvc.BodyParser.Json
 
 import scala.collection.mutable.ListBuffer
 import scala.io.Source
@@ -17,31 +17,20 @@ object FlightParametersExtracter {
     try {
       //Initiate Files
       val loader = classOf[FlightParametersExtracter].getClassLoader
-val fileList=new File(loader.getResource("model/resources").getPath).list()
-      //Initiate scanning for inputs
-      //      val keyList = form.keySet
-      //
-      //      val list = for {f <- form
-      //                      key <- keyList
-      //                      if f._1.equalsIgnoreCase(key)
-      //      } yield f._2.head
+      val fileList = new File(loader.getResource("model/resources").getPath).list()
+
       val depLoc = form.filterKeys(_.equalsIgnoreCase("depLoc")).map(a => a._2.head).head
       val arrLoc = form.filterKeys(_.equalsIgnoreCase("arrLoc")).map(a => a._2.head).head
       val choice = form.filterKeys(_.equalsIgnoreCase("sortchoice")).map(a => a._2.head).head
       val date = form.filterKeys(_.equalsIgnoreCase("date")).map(a => a._2.head).head
       val flightType = form.filterKeys(_.equalsIgnoreCase("connflightstatus")).map(a => a._2.head).head
-      //val finallist= searchFlight.getFlights("fra", "lhr", "20/11/2010", 1, "true")
-      // fileList
-
 
       //=========================================================================
-
       var tempFlightListBuff = new ListBuffer[Flight]
       fileList.foreach { flightFileName =>
-        val resourcesStream = getClass.getResourceAsStream(flightFileName)
-        val lines = Source.fromInputStream(resourcesStream).getLines
+        val path = classOf[FlightParametersExtracter].getClassLoader.getResource("model/resources/" + flightFileName).getPath
+        val lines = Source.fromFile(path).getLines
         lines.next()
-
         lines.foreach {
           line =>
             val cols = line.split(",").map(_.trim)
@@ -76,13 +65,9 @@ val fileList=new File(loader.getResource("model/resources").getPath).list()
       if (flightType.equalsIgnoreCase("true")) {
         directFlights.:::(connFlights.toList)
       }
-      else
+      else{
         directFlights
-
-
-      //====================================================================
-
-
+      }
     }
     catch {
       case ex: NoSuchFieldException => {
@@ -98,5 +83,6 @@ val fileList=new File(loader.getResource("model/resources").getPath).list()
         println("Improper Fields Exception")
       }
     }
+
   }
 }
