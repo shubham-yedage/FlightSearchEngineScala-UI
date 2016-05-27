@@ -29,13 +29,13 @@ $scope.status=true
         },
     }).success(
                 function(result){
-                    $scope.flights=result;
+                    $scope.flights=result.list;
                     $scope.flight={};
                     $scope.error = "";
     }).error(
                 function(data,statusText,headers)
                     {
-                        $scope.error = "No Records Found! Please Try Again! Error Status:"+statusText;
+                        $scope.error = "Error:"+data;
                     });
     };
 });
