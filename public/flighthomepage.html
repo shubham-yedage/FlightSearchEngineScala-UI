@@ -74,16 +74,21 @@
                     <th>
                         Fare
                     </th>
+                    <th>
+                        Details
+                    </th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="flight in flights" class="flight-details" serach-method="search()">
+                        <tr ng-repeat="flight in flights" class="flight-details" serach-method="search()">
                         <td>{{flight.name}}</td>
-                        <td>{{flight.departure}}</td>
-                        <td>{{flight.arrival}}</td>
-                        <td>{{flight.depDate}}</td>
-                        <td>{{flight.depTime}}</td>
+                        <td>{{flight.depLoc}}</td>
+                        <td>{{flight.arrLoc}}</td>
+                        <td>{{flight.date}}</td>
+                        <td>{{flight.time}}</td>
                         <td>{{flight.duration}}</td>
                         <td>{{flight.fare}}</td>
+                         <td><a href="#" class="dropdown-toggle"><span class="caret"></span></a></td>
+
                     </tr>
                     </tbody>
                 </table>

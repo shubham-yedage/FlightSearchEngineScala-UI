@@ -18,8 +18,6 @@ $scope.status=true
                 return str.join("&");
             },
         data: {
-
-
         deploc: flight.dep,
         arrloc: flight.arr,
         date: $filter('date')(flight.date, "dd/MM/yyyy"),

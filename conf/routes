@@ -5,6 +5,6 @@
 # Home page
 GET     /homepage                   controllers.Assets.at(path="/public", file="flighthomepage.html")
 POST    /homepage                   controllers.FlightController.index
-
+Post    /homepage/admin/:operationToDo  controllers.FlightController.dbOperation(operationToDo)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

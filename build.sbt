@@ -14,3 +14,4 @@ libraryDependencies ++= Seq(
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
+libraryDependencies += "org.neo4j.driver" % "neo4j-java-driver" % "1.0.0"
