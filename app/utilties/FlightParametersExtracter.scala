@@ -24,7 +24,7 @@ object FlightParametersExtracter {
     val date = form.filterKeys(_.equalsIgnoreCase("date")).map(a => a._2.head).head
     val flightType = form.filterKeys(_.equalsIgnoreCase("connflightstatus")).map(a => a._2.head).head
 
-    ListFromDb.getFlights(depLoc.toUpperCase, arrLoc.toUpperCase, date, sortChoice.toInt, flightType.toBoolean)
+    ListFromDbApproach2.getFlights(depLoc.toUpperCase, arrLoc.toUpperCase, date, sortChoice.toInt, flightType.toBoolean)
     //    //=========================================================================
     //    val tempFlightListBuff = new ListBuffer[Flight]
     //    fileList.foreach { flightFileName =>
