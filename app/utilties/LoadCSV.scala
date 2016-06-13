@@ -2,7 +2,7 @@ package utilties
 
 import java.io.File
 
-object LoadCSV extends App {
+object LoadCSV {
 
   def getFilesList: List[String] = {
     new File("/home/synerzip/software/neo4j-community-3.0.2/import/Delete").list().toList

@@ -22,7 +22,6 @@ $scope.status=true
         arrloc: flight.arr,
         date: $filter('date')(flight.date, "dd/MM/yyyy"),
         sortchoice: flight.choice,
-        //connflightstatus: flight.connFlight
         connflightstatus:status
         },
     }).success(
@@ -36,4 +35,27 @@ $scope.status=true
                         $scope.error = "Error:"+data;
                     });
     };
+    $scope.getconnFlights = function(flight){
+     $http({
+            method: 'PUT',
+            url: 'http://localhost:9000/homepage/connFlights',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+             transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+            data: {
+            name:flight.name
+            },
+        }).success(
+                    function(result){
+                        $scope.flights=result.list;
+        }).error(
+                    function(data,statusText,headers)
+                        {
+                            $scope.error = "Error:"+data;
+                        });
+    }
 });

@@ -7,11 +7,11 @@ class FlightParametersExtracter {
 
 object FlightParametersExtracter {
 
-  def matchSortChoice(sortChoice: Int): String = sortChoice match {
-    case 1 => "fare"
-    case 2 => "duration"
-    case _ => "fare,duration"
-  }
+  //  def matchSortChoice(sortChoice: Int): String = sortChoice match {
+  //    case 1 => "fare"
+  //    case 2 => "duration"
+  //    case _ => "fare,duration"
+  //  }
 
   def getFlightsList(form: Map[String, Seq[String]]): List[Flight] = {
     //Initiate Files
@@ -24,7 +24,7 @@ object FlightParametersExtracter {
     val date = form.filterKeys(_.equalsIgnoreCase("date")).map(a => a._2.head).head
     val flightType = form.filterKeys(_.equalsIgnoreCase("connflightstatus")).map(a => a._2.head).head
 
-    ListFromDb.getFlights(depLoc.toUpperCase, arrLoc.toUpperCase, date, matchSortChoice(sortChoice.toInt), flightType.toBoolean)
+    ListFromDb.getFlights(depLoc.toUpperCase, arrLoc.toUpperCase, date, sortChoice.toInt, flightType.toBoolean)
     //    //=========================================================================
     //    val tempFlightListBuff = new ListBuffer[Flight]
     //    fileList.foreach { flightFileName =>
